@@ -1,0 +1,399 @@
+/* =========================================
+   Story Hub
+   التأثيرات العامة
+   ========================================= */
+
+
+/* =========================================
+   أزرار القائمة
+   ========================================= */
+
+.nav-button:active {
+
+    transform:
+        scale(0.97);
+
+}
+
+
+.app-logo-icon {
+
+    transition:
+        transform 0.3s ease;
+
+}
+
+
+.app-logo-icon:hover {
+
+    transform:
+        rotate(-5deg)
+        scale(1.05);
+
+}
+
+
+
+/* =========================================
+   شاشة البداية
+   ========================================= */
+
+.splash-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #3b2517 0%,
+            #1b130e 35%,
+            #0c0907 75%,
+            #070605 100%
+        );
+
+    z-index: 99999;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+
+}
+
+
+.splash-screen.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+
+/* =========================================
+   محتوى شاشة البداية
+   ========================================= */
+
+.splash-content {
+
+    width: min(
+        90%,
+        420px
+    );
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+
+/* =========================================
+   أيقونة شاشة البداية
+   ========================================= */
+
+.splash-icon {
+
+    width: 110px;
+    height: 110px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #8b542d,
+            #4c2d19
+        );
+
+    border: 1px solid #b87943;
+
+    box-shadow:
+        0 0 25px
+        rgba(
+            170,
+            105,
+            52,
+            0.25
+        ),
+
+        0 15px 45px
+        rgba(
+            0,
+            0,
+            0,
+            0.5
+        );
+
+    font-size: 55px;
+
+    opacity: 0;
+
+    transform:
+        scale(0.5)
+        translateY(25px);
+
+    animation:
+        splashIconIn
+        1s
+        cubic-bezier(
+            .2,
+            .8,
+            .2,
+            1
+        )
+        0.2s
+        forwards;
+
+}
+
+
+@keyframes splashIconIn {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(0.5)
+            translateY(25px);
+
+    }
+
+    70% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.08)
+            translateY(-3px);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+
+/* =========================================
+   اسم Story Hub
+   ========================================= */
+
+.splash-title {
+
+    margin-top: 24px;
+
+    color: #f4e4d4;
+
+    font-size:
+        clamp(
+            30px,
+            7vw,
+            46px
+        );
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    animation:
+        splashTitleIn
+        0.8s
+        ease
+        0.9s
+        forwards;
+
+}
+
+
+@keyframes splashTitleIn {
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+
+/* =========================================
+   Welcome
+   ========================================= */
+
+.splash-welcome {
+
+    margin-top: 18px;
+
+    color: #d99b62;
+
+    font-size:
+        clamp(
+            20px,
+            5vw,
+            28px
+        );
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    animation:
+        splashTextIn
+        0.7s
+        ease
+        1.45s
+        forwards;
+
+}
+
+
+
+/* =========================================
+   مرحبًا
+   ========================================= */
+
+.splash-arabic {
+
+    margin-top: 5px;
+
+    color: #ffffff;
+
+    font-size:
+        clamp(
+            18px,
+            4vw,
+            24px
+        );
+
+    font-weight: 500;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    animation:
+        splashTextIn
+        0.7s
+        ease
+        1.7s
+        forwards;
+
+}
+
+
+@keyframes splashTextIn {
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+
+/* =========================================
+   الهواتف
+   ========================================= */
+
+@media (max-width: 480px) {
+
+    .splash-icon {
+
+        width: 90px;
+        height: 90px;
+
+        border-radius: 25px;
+
+        font-size: 45px;
+
+    }
+
+
+    .splash-title {
+
+        margin-top: 20px;
+
+    }
+
+}
+
+
+
+/* =========================================
+   تقليل الحركة
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .splash-icon,
+    .splash-title,
+    .splash-welcome,
+    .splash-arabic {
+
+        animation: none;
+
+        opacity: 1;
+
+        transform: none;
+
+    }
+
+}

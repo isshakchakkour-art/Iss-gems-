@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Story Hub</title>
+
+
+    <!-- =========================================
+         ملفات CSS
+         ========================================= -->
+
+    <link
+        rel="stylesheet"
+        href="../CSS/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../CSS/buttons.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../CSS/effects.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../CSS/typography.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../CSS/interface.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../CSS/games.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../CSS/ai-assistant.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         شاشة البداية
+         ========================================= -->
+
+    <section
+        class="splash-screen"
+        id="splashScreen"
+    >
+
+        <div class="splash-content">
+
+
+            <!-- أيقونة التطبيق -->
+
+            <div
+                class="splash-icon"
+                id="splashIcon"
+            >
+                🎮
+            </div>
+
+
+            <!-- اسم التطبيق -->
+
+            <div
+                class="splash-title"
+                id="splashTitle"
+            >
+                Story Hub
+            </div>
+
+
+            <!-- Welcome -->
+
+            <div
+                class="splash-welcome"
+                id="splashWelcome"
+            >
+                Welcome
+            </div>
+
+
+            <!-- مرحبًا -->
+
+            <div
+                class="splash-arabic"
+                id="splashArabic"
+            >
+                مرحبًا
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         شاشة تسجيل الدخول والحساب
+         ========================================= -->
+
+    <section
+        class="auth-screen"
+        id="authScreen"
+    >
+
+        <div class="auth-card">
+
+
+            <!-- شعار تسجيل الدخول -->
+
+            <div class="auth-logo">
+                🎮
+            </div>
+
+
+            <!-- العنوان -->
+
+            <h1 id="authTitle">
+                تسجيل الدخول
+            </h1>
+
+
+            <!-- الوصف -->
+
+            <p id="authSubtitle">
+                مرحبًا بك مرة أخرى في Story Hub
+            </p>
+
+
+            <!-- نموذج الحساب -->
+
+            <form id="authForm">
+
+
+                <!-- اسم المستخدم -->
+
+                <div
+                    class="auth-field"
+                    id="usernameGroup"
+                    style="display: none;"
+                >
+
+                    <label for="username">
+                        اسم المستخدم
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        autocomplete="username"
+                        placeholder="اكتب اسم المستخدم"
+                    >
+
+                </div>
+
+
+
+                <!-- البريد الإلكتروني -->
+
+                <div class="auth-field">
+
+                    <label for="email">
+                        البريد الإلكتروني
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        autocomplete="email"
+                        placeholder="example@email.com"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- كلمة المرور -->
+
+                <div class="auth-field">
+
+                    <label for="password">
+                        كلمة المرور
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        autocomplete="current-password"
+                        placeholder="••••••••"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- رسائل النظام -->
+
+                <div
+                    class="auth-message"
+                    id="authMessage"
+                ></div>
+
+
+
+                <!-- زر الدخول / التسجيل -->
+
+                <button
+                    class="auth-submit"
+                    id="authSubmit"
+                    type="submit"
+                >
+                    تسجيل الدخول
+                </button>
+
+
+            </form>
+
+
+
+            <!-- تبديل الدخول والتسجيل -->
+
+            <button
+                class="auth-switch"
+                id="authSwitch"
+                type="button"
+            >
+
+                <span id="authSwitchText">
+                    ليس لديك حساب؟ إنشاء حساب
+                </span>
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         زر فتح وإغلاق القائمة
+         ========================================= -->
+
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="فتح وإغلاق القائمة"
+        aria-expanded="true"
+    >
+
+        <span>‹</span>
+
+    </button>
+
+
+
+    <!-- =========================================
+         القائمة الجانبية
+         ========================================= -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+
+        <!-- شعار التطبيق -->
+
+        <div class="app-logo">
+
+            <div class="app-logo-icon">
+                🎮
+            </div>
+
+            <span class="app-logo-text">
+                Story Hub
+            </span>
+
+        </div>
+
+
+
+        <!-- =====================================
+             أزرار التنقل
+             ===================================== -->
+
+        <nav class="navigation">
+
+
+            <!-- الصفحة الرئيسية -->
+
+            <button
+                class="nav-button active"
+                data-page="home"
+                type="button"
+            >
+
+                <span class="nav-icon">
+                    🏠
+                </span>
+
+                <span class="nav-text">
+                    الصفحة الرئيسية
+                </span>
+
+            </button>
+
+
+
+            <!-- الألعاب -->
+
+            <button
+                class="nav-button"
+                data-page="games"
+                type="button"
+            >
+
+                <span class="nav-icon">
+                    🎮
+                </span>
+
+                <span class="nav-text">
+                    الألعاب
+                </span>
+
+            </button>
+
+
+
+            <!-- تحديثات الألعاب -->
+
+            <button
+                class="nav-button"
+                data-page="updates"
+                type="button"
+            >
+
+                <span class="nav-icon">
+                    🔄
+                </span>
+
+                <span class="nav-text">
+                    تحديثات الألعاب
+                </span>
+
+            </button>
+
+
+
+            <!-- آخر الأخبار -->
+
+            <button
+                class="nav-button"
+                data-page="news"
+                type="button"
+            >
+
+                <span class="nav-icon">
+                    📰
+                </span>
+
+                <span class="nav-text">
+                    آخر الأخبار
+                </span>
+
+            </button>
+
+
+
+            <!-- المساعد الذكي (مسؤول فقط) -->
+
+            <button
+                class="nav-button"
+                data-page="ai"
+                data-admin-only
+                type="button"
+                style="display:none;"
+            >
+
+                <span class="nav-icon">
+                    🤖
+                </span>
+
+                <span class="nav-text">
+                    المساعد الذكي
+                </span>
+
+            </button>
+
+
+        </nav>
+
+
+    </aside>
+
+
+
+    <!-- =========================================
+         المحتوى الرئيسي
+         ========================================= -->
+
+    <main
+        class="main-content"
+        id="mainContent"
+    >
+
+        <section class="home-section">
+
+            <h1>
+                مرحبًا بك في Story Hub
+            </h1>
+
+            <p>
+                منصتك للألعاب والتحديثات وآخر الأخبار.
+            </p>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         JavaScript
+         ========================================= -->
+
+    <!-- الأزرار والقائمة -->
+
+    <script
+        src="../JS/buttons.js"
+    ></script>
+
+
+    <!-- الحركات -->
+
+    <script
+        src="../JS/animations.js"
+    ></script>
+
+
+    <!-- Firebase Database -->
+
+    <script
+        type="module"
+        src="../JS/database.js"
+    ></script>
+
+
+    <!-- Firebase Authentication -->
+
+    <script
+        type="module"
+        src="../JS/auth.js"
+    ></script>
+
+
+    <!-- =========================================
+         Story Hub Admin System
+         ========================================= -->
+
+    <script
+        type="module"
+        src="../JS/admin.js"
+    ></script>
+
+
+    <!-- =========================================
+         Story Hub Games System
+         ========================================= -->
+
+    <script
+        type="module"
+        src="../JS/games.js"
+    ></script>
+
+
+    <!-- =========================================
+         Story Hub News System
+         ========================================= -->
+
+    <script
+        type="module"
+        src="../JS/news.js"
+    ></script>
+
+
+    <!-- =========================================
+         Story Hub Users Admin
+         ========================================= -->
+
+    <script
+        type="module"
+        src="../JS/users-admin.js"
+    ></script>
+
+
+    <!-- =========================================
+         AI Assistant (Puter.js - بدون مفتاح API)
+         ========================================= -->
+
+    <script
+        src="https://js.puter.com/v2/"
+    ></script>
+
+    <script
+        type="module"
+        src="../JS/ai-assistant.js"
+    ></script>
+
+
+</body>
+
+</html>

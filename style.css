@@ -1,0 +1,285 @@
+/* =========================================
+   Astology Hub
+   التصميم الرئيسي والمتجاوب
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    background: #100d0a;
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   القائمة الجانبية
+   ========================================= */
+
+.sidebar {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+
+    width: 280px;
+    height: 100vh;
+
+    padding: 25px 18px;
+
+    background: #18120e;
+
+    border-left: 1px solid #3d2a1d;
+
+    z-index: 1000;
+
+    transition:
+        width 0.3s ease,
+        padding 0.3s ease;
+}
+
+
+/* =========================================
+   حالة القائمة المغلقة
+   ========================================= */
+
+body.sidebar-collapsed .sidebar {
+    width: 82px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+body.sidebar-collapsed .nav-text,
+body.sidebar-collapsed .app-logo-text {
+    display: none;
+}
+
+
+/* =========================================
+   الشعار
+   ========================================= */
+
+.app-logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-height: 50px;
+
+    padding: 5px;
+
+    margin-bottom: 35px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+.app-logo-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #5c351c;
+}
+
+
+/* =========================================
+   المحتوى الرئيسي
+   ========================================= */
+
+.main-content {
+    min-height: 100vh;
+
+    margin-right: 280px;
+
+    padding: 60px 40px;
+
+    background: #100d0a;
+
+    transition:
+        margin-right 0.3s ease;
+}
+
+
+body.sidebar-collapsed .main-content {
+    margin-right: 82px;
+}
+
+
+/* =========================================
+   زر السهم
+   ========================================= */
+
+.menu-toggle {
+    position: fixed;
+
+    top: 25px;
+
+    right: 262px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #5c351c;
+
+    border-radius: 50%;
+
+    background: #2a1c14;
+
+    color: #ffffff;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    z-index: 1100;
+
+    transition:
+        right 0.3s ease,
+        transform 0.3s ease,
+        background 0.2s ease;
+}
+
+.menu-toggle:hover {
+    background: #5c351c;
+
+    transform: scale(1.08);
+}
+
+
+/* السهم عند الإغلاق */
+
+body.sidebar-collapsed .menu-toggle {
+    right: 64px;
+
+    transform: rotate(180deg);
+}
+
+
+/* =========================================
+   محتوى الصفحة
+   ========================================= */
+
+.home-section {
+    max-width: 900px;
+}
+
+.home-section h1 {
+    margin-bottom: 15px;
+}
+
+
+/* =========================================
+   الشاشات الصغيرة
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 240px;
+    }
+
+    body.sidebar-collapsed .sidebar {
+        width: 70px;
+    }
+
+    .main-content {
+        margin-right: 240px;
+
+        padding: 35px 20px;
+    }
+
+    body.sidebar-collapsed .main-content {
+        margin-right: 70px;
+    }
+
+    .menu-toggle {
+        right: 222px;
+
+        width: 34px;
+        height: 34px;
+    }
+
+    body.sidebar-collapsed .menu-toggle {
+        right: 52px;
+    }
+
+}
+
+
+/* =========================================
+   الهواتف الصغيرة
+   ========================================= */
+
+@media (max-width: 480px) {
+
+    .sidebar {
+        width: 220px;
+
+        padding: 18px 12px;
+    }
+
+    body.sidebar-collapsed .sidebar {
+        width: 64px;
+    }
+
+    .main-content {
+        margin-right: 220px;
+
+        padding: 30px 15px;
+    }
+
+    body.sidebar-collapsed .main-content {
+        margin-right: 64px;
+    }
+
+    .menu-toggle {
+        top: 18px;
+
+        right: 202px;
+
+        width: 32px;
+        height: 32px;
+
+        font-size: 21px;
+    }
+
+    body.sidebar-collapsed .menu-toggle {
+        right: 47px;
+    }
+
+    .app-logo {
+        margin-bottom: 25px;
+    }
+
+}
