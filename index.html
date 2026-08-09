@@ -412,16 +412,119 @@
         id="mainContent"
     >
 
-        <section class="home-section">
+        <!-- Hero -->
+        <section class="hero-section">
 
-            <h1>
-                مرحبًا بك في Story Hub
-            </h1>
+            <div class="hero-inner">
 
-            <p>
-                منصتك للألعاب والتحديثات وآخر الأخبار.
-            </p>
+                <div class="hero-text">
+                    <h1>Story Hub — منصة الألعاب</h1>
+                    <p>ألعاب، تحديثات، أخبار، ومحتوى مُختار لك. ابدأ بالبحث أو استكشف الألعاب المميزة.</p>
 
+                    <div class="search-bar">
+                        <input id="siteSearch" type="search" placeholder="ابحث عن لعبة أو تصنيف...">
+                        <button id="searchBtn">🔎 بحث</button>
+                    </div>
+
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-card">🎮</div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Sections: Featured, Latest, Updates, News -->
+        <section class="section" id="featured">
+            <div class="section-header">
+                <h2>ألعاب مميزة ⭐</h2>
+                <a href="#">عرض الكل</a>
+            </div>
+
+            <div class="games-grid">
+                <article class="game-card">
+                    <div class="game-thumb">🐍</div>
+                    <div class="game-body">
+                        <h3>Snake Classic</h3>
+                        <p class="game-desc">لعبة كلاسيكية ممتعة وسهلة اللعب.</p>
+                        <div class="game-meta">
+                            <span>حجم: 1.2MB</span>
+                            <span>تحديث: 2026-07-20</span>
+                        </div>
+                    </div>
+                    <div class="game-actions">
+                        <button class="btn-play">تشغيل</button>
+                        <button class="btn-download">تحميل</button>
+                    </div>
+                </article>
+
+                <article class="game-card">
+                    <div class="game-thumb">⚽</div>
+                    <div class="game-body">
+                        <h3>Mini Soccer</h3>
+                        <p class="game-desc">مباراة سريعة مع تحكم بسيط.</p>
+                        <div class="game-meta">
+                            <span>حجم: 2.8MB</span>
+                            <span>تحديث: 2026-06-01</span>
+                        </div>
+                    </div>
+                    <div class="game-actions">
+                        <button class="btn-play">تشغيل</button>
+                        <button class="btn-download">تحميل</button>
+                    </div>
+                </article>
+
+                <article class="game-card">
+                    <div class="game-thumb">🧩</div>
+                    <div class="game-body">
+                        <h3>Puzzle Mania</h3>
+                        <p class="game-desc">ألغاز ذهنية تتحداك وتسلّيك.</p>
+                        <div class="game-meta">
+                            <span>حجم: 3.6MB</span>
+                            <span>تحديث: 2026-08-01</span>
+                        </div>
+                    </div>
+                    <div class="game-actions">
+                        <button class="btn-play">تشغيل</button>
+                        <button class="btn-download">تحميل</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+
+        <section class="section" id="latest">
+            <div class="section-header">
+                <h2>أحدث الألعاب 🆕</h2>
+                <a href="#">عرض الكل</a>
+            </div>
+            <div class="games-grid small">
+                <!-- Placeholder for latest games; filled by future phase -->
+                <div class="empty">سيتم إضافة أحدث الألعاب هنا.</div>
+            </div>
+        </section>
+
+        <section class="section" id="updates">
+            <div class="section-header">
+                <h2>آخر التحديثات 🔄</h2>
+                <a href="#">عرض الكل</a>
+            </div>
+            <div class="updates-list">
+                <p>قائمة التحديثات ستظهر هنا.</p>
+            </div>
+        </section>
+
+        <section class="section" id="news">
+            <div class="section-header">
+                <h2>الأخبار 📰</h2>
+                <a href="#">عرض الكل</a>
+            </div>
+            <div class="news-list">
+                <p>أحدث الأخبار سيتم عرضها هنا.</p>
+            </div>
         </section>
 
     </main>
