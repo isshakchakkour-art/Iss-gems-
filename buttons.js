@@ -135,6 +135,24 @@ function handleNavigation(page) {
             break;
 
 
+        case "profile":
+
+            if (window.StoryHubAuth) {
+
+                window.StoryHubAuth.renderProfilePage(mainContent);
+
+            } else {
+
+                mainContent.innerHTML = `
+                    <section class="home-section">
+                        <h1>الحساب</h1>
+
+                    </section>
+                `;
+            }
+
+            break;
+
         case "ai":
 
             if (window.StoryHubAI) {

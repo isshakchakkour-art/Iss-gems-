@@ -819,6 +819,89 @@ function openAdminPanel() {
 
 
 /* =========================================================
+   عرض صفحة الحساب للمستخدم الحالي
+   ========================================================= */
+
+async function renderProfilePage(container) {
+
+    if (!container) return;
+
+    if (!currentUser) {
+
+        container.innerHTML = `
+            <section class="home-section">
+                <h1>الحساب</h1>
+                <p>يرجى تسجيل الدخول لعرض صفحتك الشخصية.</p>
+            </section>
+        `;
+
+        showAuthentication();
+        return;
+    }
+
+    // تأكد من وجود بيانات المستخدم
+    if (!currentUserData) {
+        currentUserData = await getUserData(currentUser.uid);
+    }
+
+    const username = currentUserData && currentUserData.username ? currentUserData.username : "مستخدم جديد";
+
+    container.innerHTML = `
+        <section class="profile-section">
+            <h1>حسابك</h1>
+
+            <div class="profile-card">
+                <div class="profile-avatar">👤</div>
+                <div class="profile-info">
+                    <h2 id="profileName">${escapeHTML(username)}</h2>
+                    <p id="profileEmail">${escapeHTML(currentUser.email || "-")}</p>
+                    <div class="profile-actions">
+                        <button id="editProfileBtn">تعديل الملف</button>
+                        <button id="logoutBtn">تسجيل الخروج</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-sections">
+                <section>
+                    <h3>الألعاب المفضلة</h3>
+                    <div id="favoritesList">لم يتم إضافة ألعاب بعد.</div>
+                </section>
+
+                <section>
+                    <h3>التقييمات</h3>
+                    <div id="ratingsList">لا توجد تقييمات بعد.</div>
+                </section>
+            </div>
+        </section>
+    `;
+
+    const logoutBtn = container.querySelector("#logoutBtn");
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", async () => {
+            await logoutUser();
+        });
+    }
+
+    const editBtn = container.querySelector("#editProfileBtn");
+
+    if (editBtn) {
+        editBtn.addEventListener("click", () => {
+            const newName = window.prompt("اكتب اسم المستخدم الجديد:", username);
+            if (newName && newName.trim()) {
+                saveUserData(currentUser, newName.trim()).then(() => {
+                    const el = container.querySelector("#profileName");
+                    if (el) el.textContent = newName.trim();
+                }).catch(err => console.error(err));
+            }
+        });
+    }
+
+}
+
+
+/* =========================================================
    تسجيل الدخول
    ========================================================= */
 
@@ -1478,6 +1561,13 @@ window.StoryHubAuth = {
 
             openAdminPanel();
         }
+    }
+
+    ,
+
+    renderProfilePage(container) {
+
+        return renderProfilePage(container);
     }
 
 };
