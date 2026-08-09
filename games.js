@@ -529,7 +529,10 @@ async function renderGamesPage(container) {
 
             <div class="games-header">
 
-                <h1>🎮 الألعاب</h1>
+                <div>
+                    <h1>🎮 الألعاب</h1>
+                    <p class="games-subtitle">استكشف ألعابًا متنوعة، شغّلها مباشرةً أو ارفع ألعابك الخاصة.</p>
+                </div>
 
                 ${userIsAdmin()
                     ? `<button
@@ -599,7 +602,7 @@ async function renderGamesPage(container) {
 function renderGameCard(game) {
 
     return `
-        <div class="game-card" data-game-id="${game.id}">
+        <article class="game-card" data-game-id="${game.id}">
 
             <div class="game-card-image">
                 ${game.imageURL
@@ -608,11 +611,14 @@ function renderGameCard(game) {
                 }
             </div>
 
-            <h3>${escapeHTML(game.name || "بدون اسم")}</h3>
-
-            <p>${escapeHTML(game.description || "")}</p>
-
-            <p class="game-version">الإصدار: ${game.version}</p>
+            <div class="game-card-body">
+                <h3>${escapeHTML(game.name || "بدون اسم")}</h3>
+                <p>${escapeHTML(game.description || "")}</p>
+                <div class="game-card-meta">
+                    <span>الإصدار: ${game.version}</span>
+                    <span>مُتاح الآن</span>
+                </div>
+            </div>
 
             <div class="game-card-actions">
 
@@ -621,7 +627,15 @@ function renderGameCard(game) {
                     class="btn-primary play-game-btn"
                     data-game-id="${game.id}"
                 >
-                    ▶ تشغيل / تنزيل
+                    ▶ تشغيل
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-secondary download-game-btn"
+                    data-game-id="${game.id}"
+                >
+                    ⬇ تحميل
                 </button>
 
                 ${userIsAdmin()
@@ -631,7 +645,7 @@ function renderGameCard(game) {
                             class="btn-secondary edit-game-btn"
                             data-game-id="${game.id}"
                         >
-                            ✏️ تحديث جديد
+                            ✏️ تحديث
                         </button>
 
                         <button
@@ -647,7 +661,7 @@ function renderGameCard(game) {
 
             </div>
 
-        </div>
+        </article>
     `;
 }
 
@@ -659,6 +673,28 @@ function renderGameCard(game) {
 function attachGameCardEvents(container, games) {
 
     container.querySelectorAll(".play-game-btn")
+        .forEach(button => {
+
+            button.addEventListener("click", async () => {
+
+                const game =
+                    games[button.dataset.gameId];
+
+                button.disabled = true;
+
+                const originalText =
+                    button.textContent;
+
+                await playGame(game, message => {
+                    button.textContent = message;
+                });
+
+                button.textContent = originalText;
+                button.disabled = false;
+            });
+        });
+
+    container.querySelectorAll(".download-game-btn")
         .forEach(button => {
 
             button.addEventListener("click", async () => {
@@ -1120,13 +1156,23 @@ function escapeHTML(text) {
    API عامة
    ========================================================= */
 
+async function getFeaturedGames(limit = 3) {
+
+    const games = await fetchAllGames();
+
+    return Object.values(games)
+        .slice(0, limit);
+}
+
 window.StoryHubGames = {
 
     renderGamesPage,
 
     renderUpdatesPage,
 
-    saveGameRecord
+    saveGameRecord,
+
+    getFeaturedGames
 
 };
 

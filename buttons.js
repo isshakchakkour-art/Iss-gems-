@@ -76,7 +76,7 @@ navigationButtons.forEach((button) => {
    محتوى الصفحات
    ========================================= */
 
-function renderHomePage(target) {
+async function renderHomePage(target) {
 
     if (!target) {
         return;
@@ -112,54 +112,8 @@ function renderHomePage(target) {
                 <a href="#">عرض الكل</a>
             </div>
 
-            <div class="games-grid">
-                <article class="game-card">
-                    <div class="game-thumb">🐍</div>
-                    <div class="game-body">
-                        <h3>Snake Classic</h3>
-                        <p class="game-desc">لعبة كلاسيكية ممتعة وسهلة اللعب.</p>
-                        <div class="game-meta">
-                            <span>حجم: 1.2MB</span>
-                            <span>تحديث: 2026-07-20</span>
-                        </div>
-                    </div>
-                    <div class="game-actions">
-                        <button class="btn-play">تشغيل</button>
-                        <button class="btn-download">تحميل</button>
-                    </div>
-                </article>
-
-                <article class="game-card">
-                    <div class="game-thumb">⚽</div>
-                    <div class="game-body">
-                        <h3>Mini Soccer</h3>
-                        <p class="game-desc">مباراة سريعة مع تحكم بسيط.</p>
-                        <div class="game-meta">
-                            <span>حجم: 2.8MB</span>
-                            <span>تحديث: 2026-06-01</span>
-                        </div>
-                    </div>
-                    <div class="game-actions">
-                        <button class="btn-play">تشغيل</button>
-                        <button class="btn-download">تحميل</button>
-                    </div>
-                </article>
-
-                <article class="game-card">
-                    <div class="game-thumb">🧩</div>
-                    <div class="game-body">
-                        <h3>Puzzle Mania</h3>
-                        <p class="game-desc">ألغاز ذهنية تتحداك وتسلّيك.</p>
-                        <div class="game-meta">
-                            <span>حجم: 3.6MB</span>
-                            <span>تحديث: 2026-08-01</span>
-                        </div>
-                    </div>
-                    <div class="game-actions">
-                        <button class="btn-play">تشغيل</button>
-                        <button class="btn-download">تحميل</button>
-                    </div>
-                </article>
+            <div class="games-grid" id="featuredGamesList">
+                <div class="empty">جاري تحميل الألعاب المميزة...</div>
             </div>
         </section>
 
@@ -168,8 +122,8 @@ function renderHomePage(target) {
                 <h2>أحدث الألعاب 🆕</h2>
                 <a href="#">عرض الكل</a>
             </div>
-            <div class="games-grid small">
-                <div class="empty">سيتم إضافة أحدث الألعاب هنا.</div>
+            <div class="games-grid small" id="latestGamesList">
+                <div class="empty">جاري تحميل أحدث الألعاب...</div>
             </div>
         </section>
 
@@ -193,6 +147,64 @@ function renderHomePage(target) {
             </div>
         </section>
     `;
+
+    const featuredGamesList = target.querySelector("#featuredGamesList");
+    const latestGamesList = target.querySelector("#latestGamesList");
+
+    if (window.StoryHubGames?.getFeaturedGames) {
+
+        try {
+
+            const featuredGames = await window.StoryHubGames.getFeaturedGames(3);
+
+            if (featuredGames.length > 0) {
+
+                featuredGamesList.innerHTML = featuredGames.map(game => `
+                    <article class="game-card">
+                        <div class="game-card-image">
+                            ${game.imageURL ? `<img src="${game.imageURL}" alt="${game.name}" onerror="this.parentElement.textContent='🎮'">` : "🎮"}
+                        </div>
+                        <div class="game-card-body">
+                            <h3>${game.name || "لعبة"}</h3>
+                            <p>${game.description || "لا يوجد وصف متاح."}</p>
+                            <div class="game-card-meta">
+                                <span>الإصدار: ${game.version || 1}</span>
+                            </div>
+                        </div>
+                    </article>
+                `).join("");
+            } else {
+
+                featuredGamesList.innerHTML = '<div class="empty">لا توجد ألعاب مميزة بعد.</div>';
+            }
+
+            const latestGames = featuredGames.slice(0, 2);
+
+            if (latestGames.length > 0) {
+
+                latestGamesList.innerHTML = latestGames.map(game => `
+                    <article class="game-card">
+                        <div class="game-card-image small">
+                            ${game.imageURL ? `<img src="${game.imageURL}" alt="${game.name}" onerror="this.parentElement.textContent='🎮'">` : "🎮"}
+                        </div>
+                        <div class="game-card-body">
+                            <h3>${game.name || "لعبة"}</h3>
+                            <p>${game.description || ""}</p>
+                        </div>
+                    </article>
+                `).join("");
+            } else {
+
+                latestGamesList.innerHTML = '<div class="empty">لا توجد ألعاب حديثة بعد.</div>';
+            }
+
+        } catch (error) {
+
+            console.error("❌ Story Hub: تعذّرت قراءة الألعاب المميزة.", error);
+            featuredGamesList.innerHTML = '<div class="empty">تعذر تحميل الألعاب الآن.</div>';
+            latestGamesList.innerHTML = '<div class="empty">تعذر تحميل الألعاب الآن.</div>';
+        }
+    }
 }
 
 function handleNavigation(page) {
